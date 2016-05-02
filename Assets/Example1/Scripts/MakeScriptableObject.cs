@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
-public class MakeScriptableObject : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+public class MakeScriptableObject
+{
+	[MenuItem("Assets/Create/My Scriptable Object")]
+	public static void CreateAsset()
+	{
+		MyScriptableObjectClass asset = ScriptableObject.CreateInstance<MyScriptableObjectClass>();
+		
+		AssetDatabase.CreateAsset(asset, "Assets/Example1/NewScriptableObject.asset");
+		AssetDatabase.SaveAssets();
+		
+		EditorUtility.FocusProjectWindow();
+		Selection.activeObject = asset;
 	}
 }
